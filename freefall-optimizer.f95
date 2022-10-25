@@ -2,6 +2,7 @@ program findgravity
 
     implicit none
 
+    ! Raw Data from Lab
     real(8), dimension(6) :: top_heights = (/0.527, 0.527, 0.526, 0.526, 0.526, 0.526/)
     real(8), dimension(6) :: bottom_heights = (/0.291, 0.416, 0.364, 0.182, 0.488, 0.383/)
     real(8), dimension(6) :: top_time = (/0.03658, 0.03277, 0.03865, 0.03592, 0.0388, 0.03728/)
