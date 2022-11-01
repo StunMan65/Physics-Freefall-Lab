@@ -204,7 +204,7 @@ real(8) function get_acceleration(density, velocity, drag_coefficient, reference
     implicit none
 
     real(8) :: density, velocity, drag_coefficient, reference_area, mass, gravity, acceleration
-    acceleration = (0.5 * density * velocity * velocity * drag_coefficient * reference_area) / mass
+    acceleration = (-0.5 * density * abs(velocity) * velocity * drag_coefficient * reference_area) / mass
     get_acceleration = acceleration + gravity
     return
 
