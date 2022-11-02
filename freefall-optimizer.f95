@@ -105,9 +105,16 @@ subroutine simulate_fall(gravitational_acceleration, top_height, bottom_height, 
     logical :: checkpointed, time_started
 
     start = top_height + distance_start + ball_diameter
-    activate_time = top_height + 0.9374449248709414 * ball_diameter ! Can be lower
-    middle = top_height + 0.06255507512905856 * ball_diameter ! Can be higher
-    finish = bottom_height + 0.06255507512905856 * ball_diameter ! Can be higher
+    activate_time = top_height + 0.9374449248709414 * ball_diameter
+    ! 0.9374 comes from the definite integral from -1 to 1 of a bell distribution with a std of 1/3
+    !     multiplied by the equation of a semicircle (y = (1-x**2)**0.5) to model the height the photogate
+    !     would actually observe given that the ball isn't passing through the beam through the diameter 100% 
+    !     of the time.
+    !     I.E. the "0.937..." coefficient is the "average value" of the all the chances of being a 
+    !     certain offset multiplied by the height that corresponds to being that certain offset off from the
+    !     center.
+    middle = top_height + 0.06255507512905856 * ball_diameter ! 1 - 0.9374..., same thing as above, opposite dir.
+    finish = bottom_height + 0.06255507512905856 * ball_diameter ! 1 - 0.9374...
 
     pos_y = start
     vel_y = starting_velocity
